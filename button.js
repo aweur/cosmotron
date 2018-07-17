@@ -11,7 +11,7 @@ var limSlider
 function setupButton() {
 
     limSlider = createSlider(0, 255, lim);
-    limSlider.position((largeur / 3) , 20);
+    limSlider.position((largeur / 3) *1 , 20);
     limSlider.mouseReleased(move)
 
     photoCR = false
