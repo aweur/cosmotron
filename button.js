@@ -7,28 +7,50 @@ var listImage = ['media/1.jpg', 'media/2.jpg', 'media/3.jpg', 'media/4.jpg', 'me
 var positionListe = 0
 var ninja = false
 var limSlider
-
+var buttonSP
+var buttonGT
+var button
+var buttonFK
 function setupButton() {
-
+    buttonSP = createImg('next.png','next')
+    buttonFK = createImg('ninja.png','ninja' )
+    button = createImg('photo.png','photo')
     limSlider = createSlider(0, 255, lim);
-    limSlider.position((largeur / 3) *5 , 20);
+    buttonPosition()
+    
     limSlider.mouseReleased(move)
 
     photoCR = false
-    buttonSP = createButton('next');
-    buttonSP.position(20, 65);
-    buttonSP.mousePressed(next);
-    buttonFK = createButton('ninja')
-    buttonFK.position(20, 105)
-    buttonFK.mousePressed(Ninja)
-    button = createButton('photo')
-    button.position(20, 85)
-    button.mousePressed(photo)
-    buttonGT = createButton('fullscreen')
-    buttonGT.position(20, 125)
-    buttonGT.mousePressed(grandecran)
+     
+    fontsize=(100)
+    
+    
+    buttonSP.mouseClicked(next)
+    
+    
+    
+    buttonFK.mouseClicked(Ninja)
+    
+    
+    
+    button.mouseClicked(photo)
+//     buttonGT = createButton('fullscreen')
+//     buttonGT.position(20, 125)
+//     buttonGT.mousePressed(grandecran)
 
 }
+
+function buttonPosition(){
+    
+    limSlider.position(largeur-200 , hauteur-hauteur);
+    buttonSP.position((largeur-(largeur/10))-25,hauteur/2)
+    buttonSP.size (largeur/10, largeur/10)
+    button.position(largeur/2-((largeur/10)/2), (hauteur-(largeur/10))-25)
+    button.size (largeur/10,largeur/10)
+    buttonFK.position(largeur/100, hauteur-hauteur)
+    buttonFK.size (largeur/10,largeur/10)
+}
+
 function photo() {
     secondCR = secondCR - 1
     if (secondCR == 0) {
@@ -79,23 +101,30 @@ function Ninja() {
         buttonSP.hide()
         button.hide()
         limSlider.hide()
-        buttonGT.hide()
+//         buttonGT.hide()
         ninja = true
     } else {
         buttonSP.show()
         button.show()
         limSlider.show()
-        buttonGT.show()
+//         buttonGT.show()
         ninja = false
     }
 }
 
 function windowResized() {
+    var reso = 0.5
+    buttonPosition()
     largeur = windowWidth
     hauteur = windowHeight
-    canvas.size(largeur, hauteur)
-    camera.size(largeur, hauteur)
+    canvas.size(largeur*reso, hauteur*reso)
+   canvas.canvas.style.width =  windowWidth+"px"
+    canvas.canvas.style.height =  windowHeight+"px"
+    camera.size(largeur*reso, hauteur*reso)
+
 }
+
+
 function next() {
     if (positionListe < listImage.length - 1) {
         positionListe++

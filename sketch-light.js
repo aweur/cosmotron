@@ -1,7 +1,7 @@
 var camera;
 let canvas;
 var largeur = 1200
-var hauteur = 1200
+var hauteur = 900
 var imagefond
 var lim = parseFloat(localStorage.getItem("valeurslider"))
 var vert = [parseFloat(localStorage.getItem("couleurfondR")),parseFloat(localStorage.getItem("couleurfondG")),parseFloat(localStorage.getItem("couleurfondB"))];
@@ -15,7 +15,9 @@ var value = 0;
 //var ninja = false
 
 function setup() {
-
+    
+    largeur = windowWidth
+    hauteur = windowHeight
     canvas = createCanvas();
     canvas.size(largeur, hauteur)
     setupButton()
@@ -25,7 +27,7 @@ function setup() {
     noStroke();
     camera.size(largeur, hauteur);
 
-    //camera.hide();
+    camera.hide();
 
     frameRate(20);
 
