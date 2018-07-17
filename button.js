@@ -11,7 +11,10 @@ var buttonSP
 var buttonGT
 var button
 var buttonFK
+
+    var reso = 0.5
 function setupButton() {
+    buttonRO = createSelect()
     buttonSP = createImg('next.png','next')
     buttonFK = createImg('ninja.png','ninja' )
     button = createImg('photo.png','photo')
@@ -27,7 +30,10 @@ function setupButton() {
     
     buttonSP.mouseClicked(next)
     
-    
+    buttonRO.option("HD")
+    buttonRO.option("SD")
+    buttonRO.value()
+    buttonRO.changed(changeResolution)
     
     buttonFK.mouseClicked(Ninja)
     
@@ -41,7 +47,8 @@ function setupButton() {
 }
 
 function buttonPosition(){
-    
+    buttonRO.position(20,hauteur/2)
+    buttonRO.size(largeur/10,hauteur/20)
     limSlider.position(largeur-200 , hauteur-hauteur);
     buttonSP.position((largeur-(largeur/10))-25,hauteur/2)
     buttonSP.size (largeur/10, largeur/10)
@@ -50,7 +57,20 @@ function buttonPosition(){
     buttonFK.position(largeur/100, hauteur-hauteur)
     buttonFK.size (largeur/10,largeur/10)
 }
+function changeResolution(){
+var choix = buttonRO.value()
+if(choix=="SD"){
+    reso=0.5
+}
+else if (choix=="HD"){
+    reso=1
+}
+else {
+    reso=10
+}
 
+windowResized()
+}
 function photo() {
     secondCR = secondCR - 1
     if (secondCR == 0) {
@@ -96,6 +116,7 @@ function zero(nombre) {
         return "" + nombre
     }
 }
+
 function Ninja() {
     if (ninja == false) {
         buttonSP.hide()
@@ -113,7 +134,7 @@ function Ninja() {
 }
 
 function windowResized() {
-    var reso = 0.5
+    
     buttonPosition()
     largeur = windowWidth
     hauteur = windowHeight
