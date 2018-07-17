@@ -18,6 +18,7 @@ function setup() {
     
     largeur = windowWidth
     hauteur = windowHeight
+    pixelDensity(1)
     canvas = createCanvas();
     canvas.size(largeur, hauteur)
     setupButton()
