@@ -30,7 +30,7 @@ function setup() {
 
     camera.hide();
 
-    frameRate(20);
+    frameRate(60);
 
     play = true
     photoCR = false
@@ -90,4 +90,8 @@ function draw() {
       }
       drawButton()
     
+    
+      
+      
+    console.log("frame" ,frameRate())
 }

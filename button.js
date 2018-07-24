@@ -12,8 +12,39 @@ var buttonGT
 var button
 var buttonFK
 
+   var r=1.25664
+var r2=0.628319 
+var degre = 0.0174533
+var move =[]
+var move2 = []; 
+var direction = []
+var horaire =[]
+var ray = []; 
+var cercleX
+var cercleY 
+var cercleR=[]
+var nbre_etoiles 
+var X =[]
+var Y =[]
+var starslight=false
+
+
     var reso = 0.5
 function setupButton() {
+
+   nbre_etoiles = random(50,100)
+    for(var i=0; i<=nbre_etoiles; i++){
+        move2[i] = random(0.5);
+        ray[i] = random(10,30)
+        X[i] = random(0,largeur)
+        Y[i] = random(0,hauteur)
+        move[i] = random(0.5)
+        direction[i]=random(0,1)
+        cercleR[i]=random(10,((largeur+hauteur)/2)/2)
+    }    
+    
+     
+    buttonST = createButton('starslight')
     buttonRO = createSelect()
     buttonSP = createImg('next.png','next')
     buttonFK = createImg('ninja.png','ninja' )
@@ -29,6 +60,7 @@ function setupButton() {
     
     
     buttonSP.mouseClicked(next)
+    buttonST.mouseClicked(etoile)
     
     buttonRO.option("HD")
     buttonRO.option("SD")
@@ -46,7 +78,42 @@ function setupButton() {
 
 }
 
+function etoile(){
+    
+    if(starslight==false){
+        starslight=true
+    }
+    else if(starslight==true){
+        starslight=false
+    }
+}
+
+function stars(param_X,param_Y,param_move,param_move2, param_ray,param_cercleR){   
+    beginShape()
+         fill(random(255),random(255),random(255))
+//       fill("yellow")
+            posX=param_X + param_cercleR *cos(r+param_move2) 
+            posY=param_Y + param_cercleR*sin(r+param_move2) 
+         
+           vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
+           vertex(posX + param_ray/2*cos(r2*3+param_move),posY + param_ray/2*sin(r2*3+param_move))
+           vertex(posX + param_ray*cos(r*2+param_move),posY + param_ray*sin(r*2+param_move))
+           vertex(posX + param_ray/2*cos(r2*5+param_move),posY + param_ray/2*sin(r2*5+param_move))
+           vertex(posX + param_ray*cos(r*3+param_move),posY + param_ray*sin(r*3+param_move))
+           vertex(posX + param_ray/2*cos(r2*7+param_move),posY + param_ray/2*sin(r2*7+param_move))
+           vertex(posX + param_ray*cos(r*4+param_move),posY + param_ray*sin(r*4+param_move))
+           vertex(posX + param_ray/2*cos(r2*9+param_move),posY + param_ray/2*sin(r2*9+param_move))
+           vertex(posX + param_ray*cos(r*5+param_move),posY + param_ray*sin(r*5+param_move))
+           vertex(posX + param_ray/2*cos(r2*11+param_move),posY + param_ray/2*sin(r2*11+param_move))
+           vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
+           vertex(posX + param_ray/2*cos(r2+param_move),posY + param_ray/2*sin(r2+param_move))  
+     
+        endShape()    
+}
+
 function buttonPosition(){
+    buttonST.position(largeur/2,20)
+    buttonST.size(largeur/10,hauteur/20)
     buttonRO.position(20,hauteur/2)
     buttonRO.size(largeur/10,hauteur/20)
     limSlider.position(largeur-200 , hauteur-hauteur);
@@ -163,7 +230,7 @@ function sliders() {
     textSize(50)
     textAlign(RIGHT, CENTER)
     if (ninja == false) {
-        text("vision", limSlider.x, 50);
+        text( limSlider.x, 50);
     }
 }
 
@@ -189,5 +256,47 @@ function grandecran() {
 function drawButton() {
     sliders()
     lim = limSlider.value()
+    
+    if(starslight==true){        
+    
+        for(var i=0; i<nbre_etoiles; i++){
+            stars(X[i],Y[i],move[i],move2[i],ray[i],cercleR[i])
 
+            if (direction[i]<0.5){
+                horaire[i]=true
+            }    
+            else {
+                horaire[i]=false
+            }
+
+            if(horaire[i] == true){
+                move2[i]+=random(0, 0.1); 
+                move[i]+=random(0,1)
+                X[i]+=random(0,1)
+                Y[i]+=random(0,10)
+            }
+            else {
+                move2[i]+=random(-0.1,0); 
+                move[i]+=random(-1,0)
+                X[i]+=random(-1,0)
+                Y[i]+=random(-10,0)
+            }
+    //        console.log('ray', ray); 
+    //       console.log('ray[i]', ray[i]); 
+
+            if(Y[i]<0-ray[i]){
+                Y[i]=hauteur+ray[i]
+            }
+            if(X[i]<0-ray[i]){
+                X[i]=largeur+ray[i]
+            }
+            if(Y[i]>hauteur+ray[i]){
+                Y[i]=0-ray[i]
+            }
+
+            if (X[i]>(largeur+ray[i])){
+                X[i]= 0-ray[i]
+            }
+        }
+    }
 }
