@@ -89,9 +89,4 @@ function draw() {
       text (''+secondCR,largeur/2,hauteur/2)
       }
       drawButton()
-    
-    
-      
-      
-    
 }
