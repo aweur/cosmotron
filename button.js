@@ -261,7 +261,7 @@ function drawButton() {
         
     
         for(var i=0; i<nbre_etoiles; i++){
-            console.log('nbr',nbre_etoiles)
+           
             stars(X[i],Y[i],move[i],move2[i],ray[i],cercleR[i])
 
             if (direction[i]<0.5){

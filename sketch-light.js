@@ -93,5 +93,5 @@ function draw() {
     
       
       
-     console.log("number" , i)
+    
 }
