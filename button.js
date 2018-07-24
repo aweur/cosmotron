@@ -281,9 +281,7 @@ function drawButton() {
                 X[i]+=random(-1,0)
                 Y[i]+=random(-10,0)
             }
-    //        console.log('ray', ray); 
-    //       console.log('ray[i]', ray[i]); 
-
+            
             if(Y[i]<0-ray[i]){
                 Y[i]=hauteur+ray[i]
             }
