@@ -93,5 +93,5 @@ function draw() {
     
       
       
-     console.log("number" ,nbre_etoiles)
+     console.log("number" , nbre_etoiles)
 }
