@@ -257,7 +257,8 @@ function drawButton() {
     sliders()
     lim = limSlider.value()
     
-    if(starslight==true){        
+    if(starslight==true){ 
+        console.log('nbr',nbre_etoiles)
     
         for(var i=0; i<nbre_etoiles; i++){
             stars(X[i],Y[i],move[i],move2[i],ray[i],cercleR[i])
