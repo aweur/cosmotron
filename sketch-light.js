@@ -93,5 +93,5 @@ function draw() {
     
       
       
-    console.log("frame" ,frameRate())
+    console.log("number" ,nbre_etoiles)
 }
