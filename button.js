@@ -32,7 +32,7 @@ var starslight=false
     var reso = 0.5
 function setupButton() {
 
-   nbre_etoiles = random(50,100)
+   nbre_etoiles = random(25,50)
     for(var i=0; i<=nbre_etoiles; i++){
         move2[i] = random(0.5);
         ray[i] = random(10,30)
