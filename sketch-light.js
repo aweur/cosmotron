@@ -3,6 +3,7 @@ let canvas;
 var largeur = 1200
 var hauteur = 900
 var imagefond
+var muffin
 var lim = parseFloat(localStorage.getItem("valeurslider"))
 var vert = [parseFloat(localStorage.getItem("couleurfondR")),parseFloat(localStorage.getItem("couleurfondG")),parseFloat(localStorage.getItem("couleurfondB"))];
 var value = 0;
@@ -24,6 +25,7 @@ function setup() {
     setupButton()
     drawButton()
     imagefond = loadImage("media/1.jpg")
+    muffin = loadImage("media/muffin.png")
     camera = createCapture(VIDEO);
     noStroke();
     camera.size(largeur, hauteur);
@@ -48,7 +50,7 @@ function descamera() {
         camera.width = camera.imageData.width
         camera.height = camera.imageData.height
 
-    }
+    }                                               
 
     camera.loadPixels();
 
@@ -78,6 +80,14 @@ function descamera() {
 
 }
 
+function animation(){
+    var click= true
+    if(click==true){
+        imagefond = loadImage(anime[positionListe])
+    }
+
+}
+
 function draw() {
 
     image(imagefond, 0, 0, largeur, hauteur)
@@ -89,4 +99,7 @@ function draw() {
       text (''+secondCR,largeur/2,hauteur/2)
       }
       drawButton()
+      animation()
+      starss()
+
 }

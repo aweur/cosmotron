@@ -5,12 +5,15 @@ var secondCR = 6
 var photoCR
 var listImage = ['media/1.jpg', 'media/2.jpg', 'media/3.jpg', 'media/4.jpg', 'media/5.jpg', 'media/6.jpg', 'media/7.jpg']
 var positionListe = 0
+var anime =['media/muffin.png','muffin_jump']
 var ninja = false
 var limSlider
 var buttonSP
 var buttonGT
 var button
 var buttonFK
+var click=true
+var muffinTime
 
    var r=1.25664
 var r2=0.628319 
@@ -46,9 +49,9 @@ function setupButton() {
      
     buttonST = createButton('starslight')
     buttonRO = createSelect()
-    buttonSP = createImg('next.png','next')
-    buttonFK = createImg('ninja.png','ninja' )
-    button = createImg('photo.png','photo')
+    buttonSP = createImg('media/next.png','next')
+    buttonFK = createImg('media/ninja.png','ninja' )
+    button = createImg('media/photo.png','photo')
     limSlider = createSlider(0, 255, lim);
     buttonPosition()
     
@@ -72,10 +75,6 @@ function setupButton() {
     
     
     button.mouseClicked(photo)
-//     buttonGT = createButton('fullscreen')
-//     buttonGT.position(20, 125)
-//     buttonGT.mousePressed(grandecran)
-
 }
 
 function etoile(){
@@ -88,10 +87,11 @@ function etoile(){
     }
 }
 
-function stars(param_X,param_Y,param_move,param_move2, param_ray,param_cercleR){   
+function stars(param_X,param_Y,param_move,param_move2, param_ray,param_cercleR){
     beginShape()
+
          fill(random(255),random(255),random(255))
-//       fill("yellow")
+
             posX=param_X + param_cercleR *cos(r+param_move2) 
             posY=param_Y + param_cercleR*sin(r+param_move2) 
          
@@ -225,10 +225,22 @@ function chargerIMG() {
     imagefond = loadImage(listImage[positionListe])
 }
 
+function animation(){
+    if(click==true){
+       muffinTime = loadImage(anime[0]) 
+    }
+    else if(click==false){
+        muffinTime = loadImage(anime[1])
+    }
+    text('I WANNA DIE',largeur/2,hauteur/3,largeur/2,hauteur/2)
+    textSize(largeur/10)
+    textAlign(CENTER,CENTER)
+   
+
+}
+
 function sliders() {
     lim = limSlider.value();
-    textSize(50)
-    textAlign(RIGHT, CENTER)
     if (ninja == false) {
         text( limSlider.x, 50);
     }
@@ -246,17 +258,7 @@ function mouseClicked(e) {
     }
 }
 
-function grandecran() {
-    if (buttonGT.mousePressed) {
-        var fs = fullscreen();
-        fullscreen(!fs);
-    }
-}
-
-function drawButton() {
-    sliders()
-    lim = limSlider.value()
-    
+function starss(){
     if(starslight==true){ 
         
     
@@ -299,4 +301,19 @@ function drawButton() {
             }
         }
     }
+
+}
+
+function grandecran() {
+    if (buttonGT.mousePressed) {
+        var fs = fullscreen();
+        fullscreen(!fs);
+    }
+}
+
+function drawButton() {
+    sliders()
+    lim = limSlider.value()
+    
+    
 }
