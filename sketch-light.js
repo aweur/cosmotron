@@ -80,13 +80,6 @@ function descamera() {
 
 }
 
-function animation(){
-    var click= true
-    if(click==true){
-        imagefond = loadImage(anime[positionListe])
-    }
-
-}
 
 function draw() {
 

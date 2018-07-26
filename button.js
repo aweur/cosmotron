@@ -14,6 +14,7 @@ var button
 var buttonFK
 var click=true
 var muffinTime
+var anime = ['media/muffin.png','media/muffin_jump.png']
 
    var r=1.25664
 var r2=0.628319 
@@ -46,7 +47,7 @@ function setupButton() {
         cercleR[i]=random(10,((largeur+hauteur)/2)/2)
     }    
     
-     
+    buttonMF = createImg('media/muffin_time.png','animation') 
     buttonST = createButton('starslight')
     buttonRO = createSelect()
     buttonSP = createImg('media/next.png','next')
@@ -76,6 +77,9 @@ function setupButton() {
     
     button.mouseClicked(photo)
 }
+
+
+
 
 function etoile(){
     
@@ -227,15 +231,17 @@ function chargerIMG() {
 
 function animation(){
     if(click==true){
-       muffinTime = loadImage(anime[0]) 
+       muffinTime = loadImage(anime[0])
+        click=false
     }
     else if(click==false){
         muffinTime = loadImage(anime[1])
+        click=true
     }
     text('I WANNA DIE',largeur/2,hauteur/3,largeur/2,hauteur/2)
     textSize(largeur/10)
     textAlign(CENTER,CENTER)
-   
+   setTimeout(animation,1000)
 
 }
 
