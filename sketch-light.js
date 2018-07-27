@@ -7,16 +7,9 @@ var muffin
 var lim = parseFloat(localStorage.getItem("valeurslider"))
 var vert = [parseFloat(localStorage.getItem("couleurfondR")),parseFloat(localStorage.getItem("couleurfondG")),parseFloat(localStorage.getItem("couleurfondB"))];
 var value = 0;
-
-//var secondCR = 6
-//var play
-//var photoCR
-//var listImage = ['media/1.jpg', 'media/2.jpg', 'media/3.jpg', 'media/4.jpg', 'media/5.jpg', 'media/6.jpg', 'media/7.jpg']
-//var positionListe = 0
-//var ninja = false
+var media1
 
 function setup() {
-    
     largeur = windowWidth
     hauteur = windowHeight
     pixelDensity(1)
@@ -24,16 +17,12 @@ function setup() {
     canvas.size(largeur, hauteur)
     setupButton()
     drawButton()
-    imagefond = loadImage("media/1.jpg")
-    muffin = loadImage("media/muffin.png")
+    imagefond = media1
     camera = createCapture(VIDEO);
     noStroke();
     camera.size(largeur, hauteur);
-
     camera.hide();
-
     frameRate(60);
-
     play = true
     photoCR = false
 }
@@ -82,17 +71,18 @@ function descamera() {
 
 
 function draw() {
-
     image(imagefond, 0, 0, largeur, hauteur)
     loadPixels()
     descamera()
+    push();  
     if (photoCR==true){
         textSize(1000)
         textAlign(CENTER,CENTER)
       text (''+secondCR,largeur/2,hauteur/2)
       }
-      drawButton()
-      animation()
-      starss()
+    pop(); 
+    drawButton()
+    animation()
+    starss()
 
 }

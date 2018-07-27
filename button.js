@@ -3,9 +3,9 @@ var vert = [0, 255, 0]
 var value = 0;
 var secondCR = 6
 var photoCR
-var listImage = ['media/1.jpg', 'media/2.jpg', 'media/3.jpg', 'media/4.jpg', 'media/5.jpg', 'media/6.jpg', 'media/7.jpg']
+var listImage 
 var positionListe = 0
-var anime =['media/muffin.png','muffin_jump']
+var anime =[muffin,muffin_jump]
 var ninja = false
 var limSlider
 var buttonSP
@@ -14,12 +14,10 @@ var button
 var buttonFK
 var click=true
 var muffinTime
-var anime = ['media/muffin.png','media/muffin_jump.png']
-
-   var r=1.25664
+var r=1.25664
 var r2=0.628319 
 var degre = 0.0174533
-var move =[]
+//var move =[]
 var move2 = []; 
 var direction = []
 var horaire =[]
@@ -31,9 +29,45 @@ var nbre_etoiles
 var X =[]
 var Y =[]
 var starslight=false
+var reso = 0.5
+var media1
+var media2
+var media3
+var media4
+var media5
+var media6
+var media7
+var muffin_time
+var next
+var ninja
+var photo
+var muf=false
+var muffin
+var muffin_jump
 
+var image_number = true; 
 
-    var reso = 0.5
+function preload(){
+    anime0 = loadImage('media/muffin.png'); 
+    anime1 = loadImage('media/muffin_jump.png'); 
+    
+     muffin_time = loadImage('media/muffin_time.png')
+    listImage = ['media/1.jpg', 'media/2.jpg', 'media/3.jpg', 'media/4.jpg', 'media/5.jpg', 'media/6.jpg', 'media/7.jpg']
+//    muffin = loadImage()
+//    muffin_jump = loadImage()
+    next = loadImage('media/next.png')
+    ninja = loadImage('media/ninja.png')
+    photo = loadImage('media/photo.png') 
+    media1 = loadImage('media/1.jpg')
+    media2 = loadImage('media/2.jpg')
+    media3 = loadImage('media/3.jpg')
+    media4 = loadImage('media/4.jpg')
+    media5 = loadImage('media/5.jpg')
+    media6 = loadImage('media/6.jpg')
+    media7 = loadImage('media/7.jpg')
+    
+}
+
 function setupButton() {
 
    nbre_etoiles = random(25,50)
@@ -47,25 +81,29 @@ function setupButton() {
         cercleR[i]=random(10,((largeur+hauteur)/2)/2)
     }    
     
-    buttonMF = createImg('media/muffin_time.png','animation') 
+     buttonMF = createImg('media/muffin_time.png','animation') 
     buttonST = createButton('starslight')
     buttonRO = createSelect()
+//    buttonSP = createImg(next,'next')
+//    buttonFK = createImg(ninja,'ninja' )
+//    button = createImg(photo,'photo')
     buttonSP = createImg('media/next.png','next')
     buttonFK = createImg('media/ninja.png','ninja' )
     button = createImg('media/photo.png','photo')
+    
     limSlider = createSlider(0, 255, lim);
     buttonPosition()
-    
+
+    console.log(move);     
     limSlider.mouseReleased(move)
 
     photoCR = false
      
     fontsize=(100)
     
-    
-    buttonSP.mouseClicked(next)
+    buttonSP.mouseClicked(nextIMG)
     buttonST.mouseClicked(etoile)
-    
+    buttonMF.mouseClicked(derpy)
     buttonRO.option("HD")
     buttonRO.option("SD")
     buttonRO.value()
@@ -75,47 +113,39 @@ function setupButton() {
     
     
     
-    button.mouseClicked(photo)
+    button.mouseClicked(photoIMG)
 }
 
 
 
 
 function etoile(){
-    
-    if(starslight==false){
-        starslight=true
-    }
-    else if(starslight==true){
-        starslight=false
-    }
+    starslight = !starslight; 
 }
 
 function stars(param_X,param_Y,param_move,param_move2, param_ray,param_cercleR){
     beginShape()
-
          fill(random(255),random(255),random(255))
-
             posX=param_X + param_cercleR *cos(r+param_move2) 
             posY=param_Y + param_cercleR*sin(r+param_move2) 
-         
-           vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
-           vertex(posX + param_ray/2*cos(r2*3+param_move),posY + param_ray/2*sin(r2*3+param_move))
-           vertex(posX + param_ray*cos(r*2+param_move),posY + param_ray*sin(r*2+param_move))
-           vertex(posX + param_ray/2*cos(r2*5+param_move),posY + param_ray/2*sin(r2*5+param_move))
-           vertex(posX + param_ray*cos(r*3+param_move),posY + param_ray*sin(r*3+param_move))
-           vertex(posX + param_ray/2*cos(r2*7+param_move),posY + param_ray/2*sin(r2*7+param_move))
-           vertex(posX + param_ray*cos(r*4+param_move),posY + param_ray*sin(r*4+param_move))
-           vertex(posX + param_ray/2*cos(r2*9+param_move),posY + param_ray/2*sin(r2*9+param_move))
-           vertex(posX + param_ray*cos(r*5+param_move),posY + param_ray*sin(r*5+param_move))
-           vertex(posX + param_ray/2*cos(r2*11+param_move),posY + param_ray/2*sin(r2*11+param_move))
-           vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
-           vertex(posX + param_ray/2*cos(r2+param_move),posY + param_ray/2*sin(r2+param_move))  
-     
+            vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
+            vertex(posX + param_ray/2*cos(r2*3+param_move),posY + param_ray/2*sin(r2*3+param_move))
+            vertex(posX + param_ray*cos(r*2+param_move),posY + param_ray*sin(r*2+param_move))
+            vertex(posX + param_ray/2*cos(r2*5+param_move),posY + param_ray/2*sin(r2*5+param_move))
+            vertex(posX + param_ray*cos(r*3+param_move),posY + param_ray*sin(r*3+param_move))
+            vertex(posX + param_ray/2*cos(r2*7+param_move),posY + param_ray/2*sin(r2*7+param_move))
+            vertex(posX + param_ray*cos(r*4+param_move),posY + param_ray*sin(r*4+param_move))
+            vertex(posX + param_ray/2*cos(r2*9+param_move),posY + param_ray/2*sin(r2*9+param_move))
+            vertex(posX + param_ray*cos(r*5+param_move),posY + param_ray*sin(r*5+param_move))
+            vertex(posX + param_ray/2*cos(r2*11+param_move),posY + param_ray/2*sin(r2*11+param_move))
+            vertex(posX + param_ray*cos(r+param_move),posY + param_ray*sin(r+param_move))
+            vertex(posX + param_ray/2*cos(r2+param_move),posY + param_ray/2*sin(r2+param_move))  
         endShape()    
 }
 
 function buttonPosition(){
+    buttonMF.position((largeur/10)*1,(hauteur/10)*8)
+    buttonMF.size(largeur/10,hauteur/10)
     buttonST.position(largeur/2,20)
     buttonST.size(largeur/10,hauteur/20)
     buttonRO.position(20,hauteur/2)
@@ -142,7 +172,7 @@ else {
 
 windowResized()
 }
-function photo() {
+function photoIMG() {
     secondCR = secondCR - 1
     if (secondCR == 0) {
 
@@ -154,7 +184,7 @@ function photo() {
         save(canvas, hello(), 'png')
         ninja = ninjaCourant
     } else {
-        setTimeout(photo, 1000)
+        setTimeout(photoIMG, 1000)
         photoCR = true
 
     }
@@ -193,13 +223,17 @@ function Ninja() {
         buttonSP.hide()
         button.hide()
         limSlider.hide()
-//         buttonGT.hide()
+         buttonMF.hide()
+        buttonST.hide()
+        buttonRO.hide()
         ninja = true
     } else {
         buttonSP.show()
         button.show()
         limSlider.show()
-//         buttonGT.show()
+          buttonMF.show()
+        buttonST.show()
+        buttonRO.show()
         ninja = false
     }
 }
@@ -217,7 +251,7 @@ function windowResized() {
 }
 
 
-function next() {
+function nextIMG() {
     if (positionListe < listImage.length - 1) {
         positionListe++
     } else {
@@ -229,21 +263,33 @@ function chargerIMG() {
     imagefond = loadImage(listImage[positionListe])
 }
 
-function animation(){
-    if(click==true){
-       muffinTime = loadImage(anime[0])
-        click=false
-    }
-    else if(click==false){
-        muffinTime = loadImage(anime[1])
-        click=true
-    }
-    text('I WANNA DIE',largeur/2,hauteur/3,largeur/2,hauteur/2)
-    textSize(largeur/10)
-    textAlign(CENTER,CENTER)
-   setTimeout(animation,1000)
-
+function derpy(){
+    muf=!muf
 }
+
+ function animation(){
+     if(muf==true){
+         if (frameCount % 25 == 0 ){
+             image_number = !image_number; 
+         }
+
+         if (image_number == true){
+            muffinTime = image(anime0, (largeur/10)*5, (hauteur/10)*4,
+                            ((largeur+hauteur)/2)/2,
+                            ((largeur+hauteur)/2)/2); 
+         }
+         else{
+            muffinTime = image(anime1, (largeur/10)*5, (hauteur/10)*5,
+                            ((largeur+hauteur)/2)/2,
+                            ((largeur+hauteur)/2)/2); 
+         }
+
+
+         text('I WANNA DIE',largeur/2,hauteur/3,)
+         textAlign(CENTER,CENTER)
+         textSize(largeur/10)   
+     }
+ }
 
 function sliders() {
     lim = limSlider.value();
@@ -265,11 +311,9 @@ function mouseClicked(e) {
 }
 
 function starss(){
-    if(starslight==true){ 
+    if(starslight==true){
         
-    
         for(var i=0; i<nbre_etoiles; i++){
-           
             stars(X[i],Y[i],move[i],move2[i],ray[i],cercleR[i])
 
             if (direction[i]<0.5){
